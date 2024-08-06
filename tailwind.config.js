@@ -36,6 +36,10 @@ export default {
         // Dark
         'dark-alert-cloudy': '#708090',
         'dark-alert-storm': '#FF6347',
+
+        // switch colors
+        'light-pink-switch': '#ff9c8c', // Para o modo claro ou cor primária
+        'dark-pink-switch': '#fe5786'   // Para o modo escuro ou cor de destaque
       },
       fontFamily: {
         'roboto': ['Roboto, sans-serif'],

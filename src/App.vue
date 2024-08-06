@@ -1,12 +1,11 @@
 <script setup>
 import { RouterView } from "vue-router";
+import Header from "./components/Header.vue";
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col min-h-screen font-roboto bg-light-background">
+    <Header />
     <RouterView />
   </div>
 </template>
-
-<script scoped>
-</script>
