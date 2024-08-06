@@ -15,8 +15,6 @@ export default {
         'light-highlight': '#007BFF',
         'light-border': '#DDDDDD',
         'light-card-background': '#F8F9FA',
-        'light-alert-sunny': '#FFD700',
-        'light-alert-rainy': '#00BFFF',
 
         // Dark mode colors
         'dark-background': '#121212',
@@ -30,7 +28,7 @@ export default {
         'alert-sunny': '#FFD700',
         'alert-rainy': '#00BFFF',
 
-        //Light
+        // Light
         'light-alert-cloudy': '#B0C4DE',
         'light-alert-storm': '#FF4500',
 
@@ -38,12 +36,12 @@ export default {
         'dark-alert-cloudy': '#708090',
         'dark-alert-storm': '#FF6347',
 
-        // switch colors
+        // Switch colors
         'light-pink-switch': '#ff9c8c', // Para o modo claro ou cor primária
         'dark-pink-switch': '#fe5786'   // Para o modo escuro ou cor de destaque
       },
       fontFamily: {
-        'roboto': ['Roboto, sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],
       },
       container: {
         padding: '2em',
@@ -54,6 +52,9 @@ export default {
         md: '768px',
         lg: '1024px',
         xl: '1280px',
+      },
+      boxShadow: {
+        'custom-dark': '0 4px 8px rgba(0, 0, 0, 0.5)',
       },
     },
   },
