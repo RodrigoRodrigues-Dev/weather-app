@@ -17,7 +17,11 @@ const isDark = useDark();
           <i class="bx bx-search-alt text-2xl"></i>
           <span class="text-lg ml-2">Buscar</span>
         </RouterLink>
-        <div class="ml-10">
+        <div class="ml-10 flex justify-center items-center">
+          <div class="mr-3 text-2xl flex items-center">
+            <i v-if="isDark" class='bx bx-moon' ></i>
+            <i v-else class='bx bx-sun'></i>
+          </div>
           <label class="inline-flex items-center cursor-pointer">
             <input v-model="isDark" type="checkbox" class="sr-only peer" :checked="isDark">
             <div

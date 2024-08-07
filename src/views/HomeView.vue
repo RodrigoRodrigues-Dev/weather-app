@@ -43,12 +43,20 @@ const getSearchResults = () => {
             w-full shadow-md py-2 px-1 top-[66px] rounded-md text-center"
             v-if="mapboxSearchResults"
             >
-            <li v-for="searchResult in mapboxSearchResults"
-            :key="searchResult.id"
-            class="py-2 cursor-pointer"
-            >
-            {{ searchResult.place_name }}
-            </li>
+            <p v-if="searchError">
+              Sorry, something went wrong, please try again.
+            </p>
+            <p v-if="!searchError && mapboxSearchResults.length === 0">
+              No results match your query, try a diferrent term.
+            </p>
+            <template v-else>
+              <li v-for="searchResult in mapboxSearchResults"
+              :key="searchResult.id"
+              class="py-2 cursor-pointer"
+              >
+              {{ searchResult.place_name }}
+              </li>
+            </template>
             </ul>
         </div>
     </main>
