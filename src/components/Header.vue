@@ -13,11 +13,11 @@ const isDark = useDark();
         <h1 class="text-xl font-black">Weather App</h1>
       </div>
       <div class="flex justify-center items-center">
-        <RouterLink :to="{ name: 'home' }" class="flex cursor-pointer">
+        <RouterLink :to="{ name: 'home' }" class="flex justify-center items-center cursor-pointer">
           <i class="bx bx-search-alt text-2xl"></i>
           <span class="text-lg ml-2">Buscar</span>
         </RouterLink>
-        <div class="ml-10 flex justify-center items-center">
+        <div class="ml-10 flex">
           <div class="mr-3 text-2xl flex items-center">
             <i v-if="isDark" class='bx bx-moon' ></i>
             <i v-else class='bx bx-sun'></i>
