@@ -9,7 +9,7 @@ export default {
     extend: {
       colors: {
         // Light mode colors
-        'light-background': '#FFFFFF',
+        'light-background': '#fBfBAfB',
         'light-text': '#333333',
         'light-secondary-text': '#666666',
         'light-highlight': '#007BFF',
@@ -37,8 +37,8 @@ export default {
         'dark-alert-storm': '#FF6347',
 
         // Switch colors
-        'light-pink-switch': '#ff9c8c', // Para o modo claro ou cor primária
-        'dark-pink-switch': '#fe5786'   // Para o modo escuro ou cor de destaque
+        'light-pink-switch': '#ff9c8c',
+        'dark-pink-switch': '#fe5786'
       },
       fontFamily: {
         'roboto': ['Roboto', 'sans-serif'],

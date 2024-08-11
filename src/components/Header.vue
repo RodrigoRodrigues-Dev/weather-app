@@ -7,11 +7,14 @@ const isDark = useDark();
 
 <template>
   <header class="sticky top-0 bg-light-background dark:bg-dark-background shadow-md dark:shadow-custom-dark">
-    <nav class="container flex flex-col sm:flex-row justify-between items-center gap-4 text-light-text py-6  dark:text-dark-text">
-      <div class="flex justify-center items-center">
-        <img class="w-12 mr-4" src="/favicon.png" alt="Weather App Logo">
-        <h1 class="text-xl font-black">Weather App</h1>
-      </div>
+    <nav
+      class="container flex flex-col sm:flex-row justify-between items-center gap-4 text-light-text py-6  dark:text-dark-text">
+      <RouterLink :to="{ name: 'home' }">
+        <div class="flex justify-center items-center">
+          <img class="w-12 mr-4" src="/favicon.png" alt="Weather App Logo">
+          <h1 class="text-xl font-black">Weather App</h1>
+        </div>
+      </RouterLink>
       <div class="flex justify-center items-center">
         <RouterLink :to="{ name: 'home' }" class="flex justify-center items-center cursor-pointer">
           <i class="bx bx-search-alt text-2xl"></i>
@@ -19,13 +22,12 @@ const isDark = useDark();
         </RouterLink>
         <div class="ml-10 flex">
           <div class="mr-3 text-2xl flex items-center">
-            <i v-if="isDark" class='bx bx-moon' ></i>
+            <i v-if="isDark" class='bx bx-moon'></i>
             <i v-else class='bx bx-sun'></i>
           </div>
           <label class="inline-flex items-center cursor-pointer">
             <input v-model="isDark" type="checkbox" class="sr-only peer" :checked="isDark">
-            <div
-              class="relative w-11 h-6 peer-focus:outline-none 
+            <div class="relative w-11 h-6 peer-focus:outline-none 
               bg-light-pink-switch peer-checked:after:translate-x-full 
               rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white 
               after:content-[''] after:absolute after:top-[2px] after:start-[2px] 
