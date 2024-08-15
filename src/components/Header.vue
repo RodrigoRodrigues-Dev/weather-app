@@ -1,14 +1,41 @@
 <script setup>
-import { useDark } from '@vueuse/core';
-import { RouterLink } from 'vue-router';
-import BaseModal from './BaseModal.vue';
 import { ref } from 'vue';
+import { uid } from 'uid';
+import { useDark } from '@vueuse/core';
+import { RouterLink, useRoute, useRouter } from 'vue-router';
+import BaseModal from './BaseModal.vue';
+
+const savedCities = ref([]);
+const route = useRoute();
+const router = useRouter();
+const addCity = () => {
+  if (localStorage.getItem('savedCities')) {
+    savedCities.value = JSON.parse(localStorage.getItem('savedCities'));
+  }
+
+  const locationObj = {
+    id: uid(),
+    state: route.params.state,
+    city: route.params.city,
+    coords: {
+      lat: route.query.lat,
+      lng: route.query.lng,
+    },
+  };
+
+  savedCities.value.push(locationObj);
+  localStorage.setItem('savedCities', JSON.stringify(savedCities.value));
+
+  let query = Object.assign({}, route.query);
+  delete query.preview;
+  router.replace({ query });
+};
 
 const isDark = useDark();
 const modalActive = ref(null);
 const toggleModal = () => {
-  modalActive.value = !modalActive.value
-}
+  modalActive.value = !modalActive.value;
+};
 </script>
 
 <template>
@@ -48,7 +75,11 @@ const toggleModal = () => {
             class='bx bxs-info-circle hover:text-light-secondary-text'
             @click="toggleModal"
           ></i>
-          <i class='bx bx-plus cursor-pointer hover:text-light-secondary-text'></i>
+          <i 
+            class='bx bx-plus cursor-pointer hover:text-light-secondary-text'
+            @click="addCity"
+            
+          ></i>
         </div>
       </div>
       <BaseModal
@@ -56,12 +87,12 @@ const toggleModal = () => {
         @close-modal="toggleModal"
       >
         <div>
-          <h1 class="text-2xl mb-1">Sobre</h1>
+          <h1 class="text-2xl mb-2">Sobre</h1>
           <p class="mb-4">
             O Clima Local permite que você acompanhe o clima atual e
             futuro das cidades de sua escolha.
           </p>
-          <h2 class="text-2xl">Como funciona</h2>
+          <h2 class="text-2xl mb-2">Como funciona</h2>
           <ol class="list-decimal list-inside mb-4">
             <li>
               Pesquise sua cidade digitando o nome na barra de busca.
@@ -77,7 +108,7 @@ const toggleModal = () => {
             </li>
           </ol>
 
-          <h2 class="text-2xl">Removendo uma cidade</h2>
+          <h2 class="text-2xl mb-2">Removendo uma cidade</h2>
           <p>
             Se você não deseja mais acompanhar uma cidade, basta
             selecioná-la na página inicial. Na parte inferior da
