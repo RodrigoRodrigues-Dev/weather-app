@@ -9,7 +9,8 @@ export default {
     extend: {
       colors: {
         // Light mode colors
-        'light-background': '#fBfBfB',
+        'light-background': '#FBFBFB',
+        'light-background-secondary': '#F6F6F6',
         'light-text': '#333333',
         'light-secondary-text': '#666666',
         'light-highlight': '#007BFF',
@@ -18,6 +19,7 @@ export default {
 
         // Dark mode colors
         'dark-background': '#121212',
+        'dark-background-secondary': '#141414',
         'dark-text': '#FFFFFF',
         'dark-secondary-text': '#BBBBBB',
         'dark-highlight': '#82B1FF',
