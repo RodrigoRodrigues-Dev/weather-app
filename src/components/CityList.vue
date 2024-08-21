@@ -48,7 +48,7 @@ const goToCityView = (city) => {
         <CityCard :city="city" @click="goToCityView(city)"/>
     </div>
 
-    <p v-if="savedCities.length === 0">
+    <p class="text-light-text dark:text-dark-text" v-if="savedCities.length === 0">
         Não há locais adicionados. Para começar a monitorar um local, faça uma busca no campo acima.
     </p>
 </template>
