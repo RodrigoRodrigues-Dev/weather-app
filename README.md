@@ -1,29 +1,75 @@
-# Weather App
+<h1 align="center">
+  Weather App
+</h1>
 
-This template should help get you started developing with Vue 3 in Vite.
+O Weather App é uma aplicação Vue.js que permite acompanhar o clima atual e futuro de cidades de sua escolha. A aplicação utiliza APIs para buscar dados meteorológicos e geocodificação, e oferece uma interface intuitiva para adicionar e remover cidades, bem como visualizar suas condições climáticas.
 
-## Recommended IDE Setup
+<p align="center">
+  <img src=".github/preview.png" width="100%" />
+</p>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 💻 Visão Geral
 
-## Customize configuration
+O Weather App é uma aplicação web desenvolvida para fornecer informações meteorológicas precisas e em tempo real para os usuários. Ele permite que os usuários pesquisem por qualquer cidade no mundo e obtenham detalhes sobre a temperatura atual, condições climáticas, umidade, vento, e previsão para os próximos dias. Com uma interface intuitiva e responsiva, o Weather App é ideal para pessoas que precisam de atualizações rápidas sobre o clima, seja para planejar suas atividades diárias ou viagens. O aplicativo utiliza a API OpenWeather para obter dados confiáveis e atualizados, garantindo que os usuários sempre tenham acesso às informações mais recentes. Além disso, ele inclui um modo escuro que se adapta automaticamente às preferências do usuário ou do sistema operacional, proporcionando uma experiência de uso agradável em qualquer ambiente.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## ⚙️ Funcionalidades
 
-## Project Setup
+- Busca de Cidades: Pesquise cidades ou estados e visualize os resultados.
+- Visualização do Clima: Veja o clima atual, temperatura máxima e mínima para cidades salvas.
+- Adição e Remoção de Cidades: Adicione cidades à lista de monitoramento e remova-as quando desejar.
+- Modo Escuro: Alternar entre modo claro e escuro para melhor visualização.
+
+## 🛠️ Tecnologias
+
+Aqui estão as principais tecnologias utilizadas neste projeto:
+
+- **Vue.js:** Framework JavaScript para construção da interface de usuário.
+- **Vue Router:** Gerenciamento de rotas para navegação entre páginas.
+- **Axios:** Cliente HTTP para requisições de dados.
+- **TailwindCSS:** Framework de CSS para estilização.
+- **Mapbox API:** API para geocodificação e busca de cidades.
+- **OpenWeatherMap API:** API para obtenção de dados meteorológicos.
+
+<br>
+
+# 🛠️ Instalação
+
+### Requisitos
+
+- Node.js (versão 14 ou superior)
+- npm (versão 6 ou superior)
+
+### Passos
+
+1. **Clone o repositório:**
+
+```sh
+git clone https://github.com/RodrigoRodrigues-Dev/weather-app.git
+
+cd weather-app
+```
+
+2. **Instale as dependências:**
 
 ```sh
 npm install
 ```
+<br>
 
-### Compile and Hot-Reload for Development
+# 🚀 Uso
+Para iniciar a aplicação em modo de desenvolvimento, execute:
+
 
 ```sh
 npm run dev
 ```
-
-### Compile and Minify for Production
-
+Para construir o projeto para produção, utilize:
 ```sh
 npm run build
 ```
+
+## 📃 Licença
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## ☎️ Contato
+Desenvolvido por [Rodrigo Rodrigues](https://github.com/RodrigoRodrigues-Dev). Entre em contato por 📧 [rodrigorodriguesdevcontato@gmail.com](mailto:rodrigorodriguesdevcontato@gmail.com) 
