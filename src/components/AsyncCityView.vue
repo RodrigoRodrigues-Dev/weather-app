@@ -11,7 +11,7 @@ const weatherData = ref(null);
 const fetchWeatherData = async () => {
   try {
     const response = await axios.get(
-      `http://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_WEATHER_API_KEY}&q=${route.query.lat},${route.query.lng}&days=7&aqi=no&alerts=no`
+      `https://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_WEATHER_API_KEY}&q=${route.query.lat},${route.query.lng}&days=7&aqi=no&alerts=no`
     );
 
     const data = response.data;

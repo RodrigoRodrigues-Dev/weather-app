@@ -71,7 +71,7 @@ function initializeMap() {
             },
             strictBounds: false, 
         },
-        minZoom: 4,  
+        minZoom: 1,  
         maxZoom: 20
     });
 
