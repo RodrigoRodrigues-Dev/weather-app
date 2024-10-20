@@ -11,7 +11,7 @@ app.use(router)
 app.use(VueGoogleMaps, {
     load: {
         key: 'AIzaSyApHhU9ECKedly2D_lBBLnCefY-FovOAlo',
-        libraries: 'places', // Adicione outras bibliotecas conforme necessário
+        libraries: 'places',
     },
 });
 

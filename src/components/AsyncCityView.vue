@@ -2,7 +2,7 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import Map from "./Map.vue";
+import MapComponent from "./MapComponent.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -115,7 +115,7 @@ const removeCity = () => {
       </div>
     </div>
 
-    <Map />
+    <MapComponent class="my-20"/>
 
     <div
       class="flex items-center gap-2 py-12 text-light-text dark:text-dark-text cursor-pointer duration-150 hover:text-red-400 dark:hover:text-red-400"
