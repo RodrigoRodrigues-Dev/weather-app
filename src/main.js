@@ -1,18 +1,18 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import './assets/tailwind.css'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import './assets/tailwind.css';
 import VueGoogleMaps from '@fawmi/vue-google-maps';
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(router)
+app.use(router);
 
 app.use(VueGoogleMaps, {
-    load: {
-        key: 'AIzaSyApHhU9ECKedly2D_lBBLnCefY-FovOAlo',
-        libraries: 'places',
-    },
+  load: {
+    key: 'AIzaSyApHhU9ECKedly2D_lBBLnCefY-FovOAlo',
+    libraries: 'places'
+  }
 });
 
-app.mount('#app')
+app.mount('#app');

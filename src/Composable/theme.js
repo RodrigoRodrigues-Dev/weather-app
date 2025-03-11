@@ -5,6 +5,6 @@ const isDark = ref(useDark());
 
 export function useTheme() {
   return {
-    isDark,
+    isDark
   };
 }

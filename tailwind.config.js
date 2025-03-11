@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -43,22 +40,22 @@ export default {
         'dark-pink-switch': '#fe5786'
       },
       fontFamily: {
-        'roboto': ['Roboto', 'sans-serif'],
+        roboto: ['Roboto', 'sans-serif']
       },
       container: {
         padding: '2em',
-        center: true,
+        center: true
       },
       screens: {
         sm: '640px',
         md: '768px',
         lg: '1024px',
-        xl: '1280px',
+        xl: '1280px'
       },
       boxShadow: {
-        'custom-dark': '0 4px 8px rgba(0, 0, 0, 0.5)',
-      },
-    },
+        'custom-dark': '0 4px 8px rgba(0, 0, 0, 0.5)'
+      }
+    }
   },
-  plugins: [],
-}
+  plugins: []
+};
