@@ -10,7 +10,7 @@ app.use(router);
 
 app.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyApHhU9ECKedly2D_lBBLnCefY-FovOAlo',
+    key: import.meta.env.VITE_API_GOOGLE_KEY,
     libraries: 'places'
   }
 });
