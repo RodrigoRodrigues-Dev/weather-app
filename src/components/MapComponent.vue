@@ -43,7 +43,7 @@ onMounted(() => {
 
 function loadGoogleMapsApi() {
   const script = document.createElement('script');
-  script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_API_KEY}&callback=vueGoogleMapsInit`;
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_API_GOOGLE_KEY}&callback=vueGoogleMapsInit`;
   script.async = true;
   script.defer = true;
   // O onload também chama initializeMap, caso necessário
