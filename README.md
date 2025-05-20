@@ -81,10 +81,19 @@ npm run build
 ```
 <br>
 
+# Variáveis de Ambiente
+
+Para rodar localmente, copie o arquivo `.env.example` para `.env`
+
+| Nome           | Descrição                              | Onde obter                        |
+| -------------- | -------------------------------------- | --------------------------------- |
+| `VITE_API_GOOGLE_KEY`      | Chave pública utilizada para consumir a API do Google Maps ou outros serviços da Google  | https://console.cloud.google.com/  |
+| `VITE_WEATHER_API_KEY`   | Chave secreta usada para autenticação nas chamadas à API do WeatherAPI.  | https://www.weatherapi.com/docs/ |
+<br>
+
 ## 📃 Licença
 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 <br>
-
 
 ## ☎️ Contato
 Desenvolvido por [Rodrigo Rodrigues](https://github.com/RodrigoRodrigues-Dev). Entre em contato por 📧 [rodrigorodriguesdevcontato@gmail.com](mailto:rodrigorodriguesdevcontato@gmail.com)
