@@ -6,13 +6,26 @@ import { useTheme } from '../Composable/theme.js';
 import { RouterLink, useRoute, useRouter } from 'vue-router';
 import BaseModal from './BaseModal.vue';
 
-const { isDark } = useTheme();
+const { isDark, toggleTheme } = useTheme();
 const savedCities = ref([]);
+const cityAdded = ref(null);
 const route = useRoute();
 const router = useRouter();
 const addCity = () => {
   if (localStorage.getItem('savedCities')) {
-    savedCities.value = JSON.parse(localStorage.getItem('savedCities'));
+    savedCities.value = JSON.parse(localStorage.getItem('savedCities') || '[]');
+  }
+
+  const alreadyExists = savedCities.value.some(
+    (city) =>
+      city.state === route.params.state && city.city === route.params.city
+  );
+
+  if (alreadyExists) {
+    cityAdded.value = false;
+    return;
+  } else {
+    cityAdded.value = true;
   }
 
   const locationObj = {
@@ -34,9 +47,14 @@ const addCity = () => {
   router.replace({ query });
 };
 
-const modalActive = ref(null);
-const toggleModal = () => {
-  modalActive.value = !modalActive.value;
+const modalInfoActive = ref(null);
+const toggleModalInfo = () => {
+  modalInfoActive.value = !modalInfoActive.value;
+};
+
+const modalAddCityActive = ref(null);
+const toggleModalAddCity = () => {
+  modalAddCityActive.value = !modalAddCityActive.value;
 };
 </script>
 
@@ -68,9 +86,9 @@ const toggleModal = () => {
           </div>
           <label class="inline-flex items-center cursor-pointer">
             <input
-              v-model="isDark"
+              @change="toggleTheme($event)"
               type="checkbox"
-              class="sr-only peer"
+              class="sr-only peer transition delay-150 duration-300 ease-in-out"
               :checked="isDark"
             />
             <div
@@ -80,16 +98,20 @@ const toggleModal = () => {
         </div>
         <div class="text-2xl flex gap-2">
           <i
-            class="bx bxs-info-circle hover:text-light-secondary-text"
-            @click="toggleModal"
+            class="cursor-pointer bx bxs-info-circle hover:text-light-secondary-text"
+            @click="toggleModalInfo"
           ></i>
           <i
             class="bx bx-plus cursor-pointer hover:text-light-secondary-text"
-            @click="addCity"
+            @click="
+              addCity();
+              toggleModalAddCity();
+            "
           ></i>
         </div>
       </div>
-      <BaseModal :modalActive="modalActive" @close-modal="toggleModal">
+
+      <BaseModal :modalActive="modalInfoActive" @close-modal="toggleModalInfo">
         <div>
           <h1 class="text-2xl mb-2">Sobre</h1>
           <p class="mb-4">
@@ -116,6 +138,16 @@ const toggleModal = () => {
             página inicial. Na parte inferior da página, haverá uma opção para
             excluir a cidade.
           </p>
+        </div>
+      </BaseModal>
+
+      <BaseModal
+        :modalActive="modalAddCityActive"
+        @close-modal="toggleModalAddCity()"
+      >
+        <div>
+          <span v-if="cityAdded">Cidade adicionada!</span>
+          <span v-else-if="cityAdded === false">Cidade já adicionada.</span>
         </div>
       </BaseModal>
     </nav>

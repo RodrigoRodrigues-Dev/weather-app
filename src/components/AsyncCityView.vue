@@ -2,124 +2,163 @@
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+
 import MapComponent from './MapComponent.vue';
 
+// Router
 const route = useRoute();
 const router = useRouter();
-const weatherData = ref(null);
 
+// State
+const weatherData = ref(null);
+const savedCities = ref(
+  JSON.parse(localStorage.getItem('savedCities') || '[]')
+);
+
+// Verifica se a cidade já está salva
+const alreadyExists = savedCities.value.some(
+  (city) => city.state === route.params.state && city.city === route.params.city
+);
+
+// Buscar dados do clima
 const fetchWeatherData = async () => {
   try {
-    const response = await axios.get(
-      `https://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_WEATHER_API_KEY}&q=${route.query.lat},${route.query.lng}&days=7&aqi=no&alerts=no`
+    const { data } = await axios.get(
+      `https://api.weatherapi.com/v1/forecast.json`,
+      {
+        params: {
+          key: import.meta.env.VITE_WEATHER_API_KEY,
+          q: `${route.query.lat},${route.query.lng}`,
+          days: 7,
+          aqi: 'no',
+          alerts: 'no'
+        }
+      }
     );
 
-    const data = response.data;
-
-    // Calcular a data e hora local
     const localOffset = new Date().getTimezoneOffset() * 60000;
-    const utc = new Date(data.location.localtime).getTime();
-    data.currentTime = utc + localOffset;
 
-    // Calcular a previsão horária com base no fuso horário
+    // Hora local da cidade
+    data.currentTime =
+      new Date(data.location.localtime).getTime() + localOffset;
+
+    // Ajuste das horas da previsão
     data.forecast.forecastday[0].hour.forEach((hour) => {
-      const hourUtc = new Date(hour.time).getTime();
-      hour.currentTime = hourUtc + localOffset;
+      hour.currentTime = new Date(hour.time).getTime() + localOffset;
     });
 
     weatherData.value = data;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error('Erro ao buscar clima:', error);
     weatherData.value = null;
   }
 };
 
-onMounted(() => {
-  fetchWeatherData();
-});
-
+// Remover cidade salva
 const removeCity = () => {
-  const cities = JSON.parse(localStorage.getItem('savedCities'));
+  const cities = JSON.parse(localStorage.getItem('savedCities') || '[]');
+
   const updatedCities = cities.filter((city) => city.id != route.query.id);
+
   localStorage.setItem('savedCities', JSON.stringify(updatedCities));
+
   router.push({ name: 'home' });
 };
+
+// Lifecycle
+onMounted(fetchWeatherData);
 </script>
 
 <template>
   <div class="flex flex-col flex-1 items-center">
+    <!-- Informações atuais -->
     <div
       v-if="weatherData"
-      class="flex flex-col items-center text-light-text dark:text-dark-text py-12"
+      class="flex flex-col items-center py-12 text-light-text dark:text-dark-text"
     >
-      <h1 class="text-4xl mb-2">{{ route.params.city }}</h1>
-      <p class="text-sm mb-12">
+      <h1 class="mb-2 text-4xl">
+        {{ route.params.city }}
+      </h1>
+
+      <p class="mb-12 text-sm">
         {{
-          new Date(weatherData.currentTime).toLocaleDateString('pt-br', {
+          new Date(weatherData.currentTime).toLocaleDateString('pt-BR', {
             weekday: 'short',
             day: '2-digit',
             month: 'long'
           })
         }}
         {{
-          new Date(weatherData.currentTime).toLocaleTimeString('pt-br', {
+          new Date(weatherData.currentTime).toLocaleTimeString('pt-BR', {
             timeStyle: 'short'
           })
         }}
       </p>
-      <p class="text-7xl mb-8">
-        {{ Math.round(weatherData.current.temp_c) }}&deg;C
+
+      <p class="mb-8 text-7xl">
+        {{ Math.round(weatherData.current.temp_c) }}°C
       </p>
+
       <p>
         Sensação térmica de
-        {{ Math.round(weatherData.current.feelslike_c) }} &deg;C
+        {{ Math.round(weatherData.current.feelslike_c) }}°C
       </p>
-      <p class="capitalize">{{ weatherData.current.condition.text }}</p>
+
+      <p class="capitalize">
+        {{ weatherData.current.condition.text }}
+      </p>
+
       <img
-        class="w-[130px] h-auto"
+        class="h-auto w-[130px]"
         :src="`https:${weatherData.current.condition.icon}`"
-        alt=""
+        alt="Condição climática"
       />
     </div>
 
     <hr
-      class="border-light-text dark:border-dark-secondary-text border-opacity-10 border w-full"
+      class="w-full border border-light-text border-opacity-10 dark:border-dark-secondary-text"
     />
 
+    <!-- Previsão horária -->
     <div v-if="weatherData" class="max-w-screen-md w-full py-12">
       <div class="mx-8 text-light-text dark:text-dark-text">
         <h2 class="mb-4">Previsão Horária</h2>
-        <div class="flex gap-10 overflow-x-scroll h-[180px]">
+
+        <div class="flex h-[180px] gap-10 overflow-x-scroll">
           <div
             v-for="hourData in weatherData.forecast.forecastday[0].hour"
             :key="hourData.time_epoch"
-            class="flex flex-col gap-4 items-center"
+            class="flex flex-col items-center gap-4"
           >
             <p class="whitespace-nowrap text-md">
               {{
-                new Date(hourData.currentTime).toLocaleTimeString('pt-br', {
+                new Date(hourData.currentTime).toLocaleTimeString('pt-BR', {
                   hour: 'numeric'
                 })
               }}:00
             </p>
+
             <img
-              class="w-auto h-[50px] object-cover"
+              class="h-[50px] w-auto object-cover"
               :src="`https:${hourData.condition.icon}`"
-              alt=""
+              alt="Ícone do clima"
             />
-            <p class="text-xl">{{ Math.round(hourData.temp_c) }}&deg;C</p>
+
+            <p class="text-xl">{{ Math.round(hourData.temp_c) }}°C</p>
           </div>
         </div>
       </div>
     </div>
 
     <hr
-      class="border-light-text dark:border-dark-secondary-text border-opacity-10 border w-full"
+      class="w-full border border-light-text border-opacity-10 dark:border-dark-secondary-text"
     />
 
+    <!-- Previsão dos próximos dias -->
     <div v-if="weatherData" class="max-w-screen-md w-full py-12">
       <div class="mx-8 text-light-text dark:text-dark-text">
         <h2 class="mb-4">Previsão de 3 dias</h2>
+
         <div
           v-for="day in weatherData.forecast.forecastday"
           :key="day.date_epoch"
@@ -127,28 +166,40 @@ const removeCity = () => {
         >
           <p class="flex-1">
             {{
-              new Date(day.date).toLocaleDateString('pt-br', {
+              new Date(day.date).toLocaleDateString('pt-BR', {
                 weekday: 'long'
               })
             }}
           </p>
+
           <img
-            class="w-[50px] h-[50px] object-cover"
+            class="h-[50px] w-[50px] object-cover"
             :src="`https:${day.day.condition.icon}`"
-            alt=""
+            alt="Ícone do clima"
           />
-          <div class="flex gap-2 flex-1 justify-end">
-            <p>Max: {{ Math.round(day.day.maxtemp_c) }}°C</p>
-            <p>Min: {{ Math.round(day.day.mintemp_c) }}°C</p>
+
+          <div class="flex flex-1 justify-end gap-2">
+            <p>
+              Max:
+              {{ Math.round(day.day.maxtemp_c) }}°C
+            </p>
+
+            <p>
+              Min:
+              {{ Math.round(day.day.mintemp_c) }}°C
+            </p>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Mapa -->
     <MapComponent class="my-20" />
 
+    <!-- Remover cidade -->
     <div
-      class="flex items-center gap-2 py-12 text-light-text dark:text-dark-text cursor-pointer duration-150 hover:text-red-400 dark:hover:text-red-400"
+      v-if="alreadyExists"
+      class="flex cursor-pointer items-center gap-2 py-12 text-light-text duration-150 hover:text-red-400 dark:text-dark-text dark:hover:text-red-400"
       @click="removeCity"
     >
       <i class="bx bxs-trash-alt"></i>
@@ -161,10 +212,12 @@ const removeCity = () => {
 .flex::-webkit-scrollbar {
   height: 8px;
 }
+
 .flex::-webkit-scrollbar-thumb {
   background-color: #bbbbbb;
   border-radius: 10px;
 }
+
 .flex::-webkit-scrollbar-track {
   background: transparent;
 }

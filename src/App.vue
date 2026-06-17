@@ -11,3 +11,10 @@ import Header from './components/Header.vue';
     <RouterView />
   </div>
 </template>
+
+<style scoped>
+:global(::view-transition-old(root)),
+:global(::view-transition-new(root)) {
+  animation-duration: 600ms;
+}
+</style>

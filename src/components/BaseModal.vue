@@ -1,10 +1,24 @@
 <script setup>
-defineProps({
+import { watch } from 'vue';
+
+const props = defineProps({
   modalActive: {
     type: Boolean,
     default: false
   }
 });
+
+watch(
+  () => props.modalActive,
+  (newVal) => {
+    if (newVal) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+);
 </script>
 
 <template>
