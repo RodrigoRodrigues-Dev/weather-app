@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Light mode colors
+        // Light
         'light-background': '#FBFBFB',
         'light-background-secondary': '#F6F6F6',
         'light-text': '#333333',
@@ -14,9 +14,9 @@ export default {
         'light-border': '#DDDDDD',
         'light-card-background': '#F8F9FA',
 
-        // Dark mode colors
+        // Dark
         'dark-background': '#121212',
-        'dark-background-secondary': '#141414',
+        'dark-background-secondary': '#181818',
         'dark-text': '#FFFFFF',
         'dark-secondary-text': '#BBBBBB',
         'dark-highlight': '#82B1FF',
