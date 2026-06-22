@@ -2,7 +2,7 @@
 <script setup>
 import { ref } from 'vue';
 import { uid } from 'uid';
-import { useTheme } from '../Composable/theme.js';
+import { useTheme } from '../Composables/theme.js';
 import { RouterLink, useRoute, useRouter } from 'vue-router';
 import BaseModal from './BaseModal.vue';
 

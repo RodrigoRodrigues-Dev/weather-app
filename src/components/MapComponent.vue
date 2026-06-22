@@ -4,7 +4,7 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
-import { useTheme } from '../Composable/theme.js';
+import { useTheme } from '../Composables/theme.js';
 import { watch, onMounted } from 'vue';
 
 const route = useRoute();
