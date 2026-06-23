@@ -10,6 +10,7 @@ import IconScatteredShowers from '../assets/icons/simple/icon-scattered-showers.
 import IconRain from '../assets/icons/simple/icon-rain.svg?component';
 import IconDrizzle from '../assets/icons/simple/icon-drizzle.svg?component';
 import IconRainNight from '../assets/icons/simple/icon-rain-night.svg?component';
+import IconRainThuderstorm from '../assets/icons/simple/icon-rain-thunderstorm.svg?component';
 
 // colored icons - importados como strings brutas
 import IconSunsetcolored from '../assets/icons/colored/icon-sunrise.svg?raw';
@@ -23,6 +24,7 @@ import IconScatteredShowerscolored from '../assets/icons/colored/icon-scattered-
 import IconRaincolored from '../assets/icons/colored/icon-rain.svg?raw';
 import IconDrizzlecolored from '../assets/icons/colored/icon-drizzle.svg?raw';
 import IconRainNightcolored from '../assets/icons/colored/icon-rain-night.svg?raw';
+import IconRainThuderstormcolored from '../assets/icons/colored/icon-rain-thunderstorm.svg?raw';
 
 // Ícones de métricas (customizados)
 import IconHumiditycolored from '../assets/icons/colored/icon-humidity.svg?raw';
@@ -49,7 +51,8 @@ export const simpleIconMap = {
   263: IconDrizzle,
   266: IconDrizzle,
   353: IconRainNight,
-  293: IconRainNight
+  293: IconRainNight,
+  308: IconRainThuderstorm
 };
 
 export const coloredIconMap = {
@@ -69,7 +72,8 @@ export const coloredIconMap = {
   263: IconDrizzlecolored,
   266: IconDrizzlecolored,
   353: IconRainNightcolored,
-  293: IconRainNightcolored
+  293: IconRainNightcolored,
+  308: IconRainThuderstormcolored
 };
 
 export const metricIcons = {

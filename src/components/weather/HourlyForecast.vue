@@ -23,7 +23,7 @@ const isCurrentHour = (hourData) => {
 
 // Rola o scroll até o card da hora atual
 const scrollToCurrentHour = async () => {
-  await nextTick(); // Espera o DOM atualizar
+  await nextTick();
 
   // Encontra o índice da hora atual
   const currentIndex = props.hours.findIndex((hourData) =>
@@ -72,8 +72,8 @@ const setCardRef = (el, index) => {
         :class="[
           'flex flex-col items-center justify-between gap-2 p-2 border-2 border-solid dark:border-[#474747] dark:bg-[#474747]/10 light:bg-[#fffff]/10 rounded-2xl transition-all duration-300',
           isCurrentHour(hourData)
-            ? 'border-[#474747] dark:border-[#474747] bg-[#474747]/10 dark:bg-[#474747]/10 shadow-lg shadow-blue-500/20'
-            : 'border-[#474747] dark:border-[#474747] bg-[#474747]/10 dark:bg-[#474747]/10'
+            ? 'border-blue-500 dark:border-blue-400 dark:bg-blue-400/10'
+            : 'border-2 border-solid dark:border-[#474747] dark:bg-[#474747]/10 light:bg-[#fffff]/10'
         ]"
       >
         <p class="whitespace-nowrap text-md">
