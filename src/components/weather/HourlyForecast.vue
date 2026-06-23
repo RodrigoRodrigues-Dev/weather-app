@@ -77,8 +77,8 @@ const setCardRef = (el, index) => {
         :class="[
           'flex flex-col items-center justify-between gap-2 p-2 border-2 border-solid rounded-2xl transition-all duration-300',
           isCurrentHour(hourData)
-            ? 'border-blue-500 dark:border-blue-400 dark:bg-blue-400/10 bg-blue-500/10'
-            : 'border-[#474747] dark:border-[#474747] dark:bg-[#474747]/10 bg-[#474747]/10'
+            ? 'border-blue-500 dark:border-blue-400 dark:bg-blue-400/10'
+            : 'border-2 border-solid dark:border-[#474747] dark:bg-[#474747]/10'
         ]"
       >
         <p class="whitespace-nowrap text-md">
