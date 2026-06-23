@@ -44,7 +44,7 @@ import { computed } from 'vue';
 </script>
 
 <template>
-  <div class="mx-8 text-light-text dark:text-dark-text">
+  <div class="mx-2 md:mx-8 text-light-text dark:text-dark-text">
     <h2 class="mb-4">Detalhes do Clima</h2>
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">

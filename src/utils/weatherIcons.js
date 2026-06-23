@@ -52,7 +52,8 @@ export const simpleIconMap = {
   266: IconDrizzle,
   353: IconRainNight,
   293: IconRainNight,
-  308: IconRainThuderstorm
+  308: IconRainThuderstorm,
+  356: IconRainNight
 };
 
 export const coloredIconMap = {
@@ -73,7 +74,8 @@ export const coloredIconMap = {
   266: IconDrizzlecolored,
   353: IconRainNightcolored,
   293: IconRainNightcolored,
-  308: IconRainThuderstormcolored
+  308: IconRainThuderstormcolored,
+  356: IconRainNightcolored
 };
 
 export const metricIcons = {

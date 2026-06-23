@@ -27,7 +27,7 @@ const formattedDate = computed(() => {
 <template>
   <div
     :class="gradient"
-    class="flex flex-col sm:flex-row items-center justify-between rounded-lg py-4 px-4 sm:px-6 md:px-8 mx-2 sm:mx-4 md:mx-8 text-dark-text gap-4 sm:gap-6"
+    class="flex flex-col sm:flex-row items-center justify-between rounded-lg py-4 px-4 sm:px-6 md:px-8 mx-2 md:mx-8 text-dark-text gap-4 sm:gap-6"
   >
     <!-- Esquerda: Cidade + Temperatura + Ícone -->
     <div

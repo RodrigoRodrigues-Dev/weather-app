@@ -26,7 +26,7 @@ const getIconCode = (condition) => {
 </script>
 
 <template>
-  <div class="mx-8 text-light-text dark:text-dark-text">
+  <div class="mx-2 md:mx-8 text-light-text dark:text-dark-text">
     <h2 class="mb-4">Previsão de 3 dias</h2>
 
     <div class="gap-4 grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -84,8 +84,8 @@ const getIconCode = (condition) => {
         </div>
 
         <div class="flex flex-1 justify-end gap-2">
-          <p>Max: {{ Math.round(day.day.maxtemp_c) }}°C</p>
-          <p>Min: {{ Math.round(day.day.mintemp_c) }}°C</p>
+          <p class="text-xs">Max: {{ Math.round(day.day.maxtemp_c) }}°C</p>
+          <p class="text-xs">Min: {{ Math.round(day.day.mintemp_c) }}°C</p>
         </div>
       </div>
     </div>

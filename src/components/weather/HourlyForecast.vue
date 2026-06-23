@@ -21,6 +21,11 @@ const isCurrentHour = (hourData) => {
   return cardHour === currentHour.value;
 };
 
+// Extrai o código do ícone da URL da API
+const getIconCode = (condition) => {
+  return condition.icon.match(/\/(\d+)\.png/)?.[1] || '???';
+};
+
 // Rola o scroll até o card da hora atual
 const scrollToCurrentHour = async () => {
   await nextTick();
@@ -61,7 +66,7 @@ const setCardRef = (el, index) => {
 </script>
 
 <template>
-  <div class="mx-8 text-light-text dark:text-dark-text">
+  <div class="mx-4 md:mx-8 text-light-text dark:text-dark-text">
     <h2 class="mb-4">Previsão Horária</h2>
 
     <div class="flex gap-4 overflow-x-scroll pb-[20px]">
@@ -70,10 +75,10 @@ const setCardRef = (el, index) => {
         :key="hourData.time_epoch"
         :ref="(el) => setCardRef(el, index)"
         :class="[
-          'flex flex-col items-center justify-between gap-2 p-2 border-2 border-solid dark:border-[#474747] dark:bg-[#474747]/10 light:bg-[#fffff]/10 rounded-2xl transition-all duration-300',
+          'flex flex-col items-center justify-between gap-2 p-2 border-2 border-solid rounded-2xl transition-all duration-300',
           isCurrentHour(hourData)
-            ? 'border-blue-500 dark:border-blue-400 dark:bg-blue-400/10'
-            : 'border-2 border-solid dark:border-[#474747] dark:bg-[#474747]/10 light:bg-[#fffff]/10'
+            ? 'border-blue-500 dark:border-blue-400 dark:bg-blue-400/10 bg-blue-500/10'
+            : 'border-[#474747] dark:border-[#474747] dark:bg-[#474747]/10 bg-[#474747]/10'
         ]"
       >
         <p class="whitespace-nowrap text-md">
@@ -84,18 +89,36 @@ const setCardRef = (el, index) => {
           }}:00
         </p>
 
-        <!-- Indicador "Agora" -->
-        <p
-          v-if="isCurrentHour(hourData)"
-          class="text-xs text-blue-500 dark:text-blue-400 font-semibold"
-        >
-          Agora
-        </p>
+        <!-- Espaço reservado para "Agora" -->
+        <div class="h-4 flex justify-center items-center">
+          <p
+            v-if="isCurrentHour(hourData)"
+            class="text-xs text-blue-500 dark:text-blue-400 font-semibold whitespace-nowrap"
+          >
+            Agora
+          </p>
+        </div>
 
-        <div
-          class="h-[50px] w-[50px] [&>svg]:w-full [&>svg]:h-full"
-          v-html="getIcon(hourData.condition, hourData.is_day === 1, true)"
-        />
+        <!-- Ícone com fallback -->
+        <div class="h-[50px] w-[50px] flex items-center justify-center">
+          <div
+            v-if="getIcon(hourData.condition, true, true)"
+            class="h-full w-full [&>svg]:w-full [&>svg]:h-full"
+            v-html="getIcon(hourData.condition, true, true)"
+          />
+
+          <!-- Fallback: mostra imagem da API + código -->
+          <div v-else class="flex flex-col items-center">
+            <img
+              :src="`https:${hourData.condition.icon}`"
+              :alt="hourData.condition.text"
+              class="h-[50px] w-[50px] opacity-50"
+            />
+            <span class="text-[10px] text-red-500 font-mono font-bold mt-1">
+              #{{ getIconCode(hourData.condition) }}
+            </span>
+          </div>
+        </div>
 
         <p class="text-xl">{{ Math.round(hourData.temp_c) }}°C</p>
       </div>
