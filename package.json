@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fawmi/vue-google-maps": "^0.9.79",
+    "@vercel/analytics": "^2.0.1",
     "@vueuse/core": "^10.11.0",
     "axios": "^1.7.3",
     "uid": "^2.0.2",

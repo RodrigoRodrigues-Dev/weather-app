@@ -1,6 +1,7 @@
 <script setup>
 import { RouterView } from 'vue-router';
 import Header from './components/Header.vue';
+import { Analytics } from '@vercel/analytics/vue';
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import Header from './components/Header.vue';
     <Header />
     <RouterView />
   </div>
+  <Analytics />
 </template>
 
 <style scoped>
